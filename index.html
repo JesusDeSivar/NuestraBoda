@@ -63,6 +63,9 @@
       font-size: 2rem;
       margin-bottom: 10px;
     }
+    .cover p {
+      font-size: 1.2rem;
+    }
     .cover button {
       margin-top: 20px;
       padding: 12px 24px;
@@ -78,11 +81,21 @@
       background: #112236; /* navy */
     }
 
+    /* Cronómetro */
+    .countdown {
+      margin-top: 15px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #dbe4ed; /* tono claro para contraste */
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    }
+
     /* 🔹 Responsivo */
     @media (min-width: 768px) {
       .cover h1 { font-size: 3rem; }
-      .cover p { font-size: 1.2rem; }
+      .cover p { font-size: 1.4rem; }
       .cover button { font-size: 1.1rem; }
+      .countdown { font-size: 1.8rem; }
     }
 
     /* RSVP */
@@ -152,6 +165,7 @@
     <div class="cover-content">
       <h1>¡Nos casamos!</h1>
       <p>Francisco & Marjorie • 16 Noviembre 2025</p>
+      <div class="countdown" id="countdown"></div>
       <button onclick="document.getElementById('rsvp').scrollIntoView()">Ver invitación</button>
     </div>
   </section>
@@ -194,8 +208,9 @@
     </div>
   </section>
 
-  <!-- Slide transition script -->
+  <!-- Scripts -->
   <script>
+    // Slide transition
     let hasTransitioned = false;
     const coverPhoto = document.getElementById("coverSection");
     const nextSection = document.getElementById("inviteSection");
@@ -209,6 +224,29 @@
 
     coverPhoto.addEventListener("click", triggerFirstScroll);
     window.addEventListener("keydown", triggerFirstScroll);
+
+    // Cronómetro
+    const countdownEl = document.getElementById("countdown");
+    const weddingDate = new Date("2025-11-16T00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+        countdownEl.innerHTML = "¡Hoy es el gran día!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+      countdownEl.innerHTML = `${days} días • ${hours} hrs • ${minutes} min`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000); // actualizar cada minuto
   </script>
 
 </body>

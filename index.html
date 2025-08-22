@@ -9,8 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: "Helvetica Neue", sans-serif;
-      color: #112236; /* navy blue */
-      background: #ffffff; /* énfasis en blanco */
+      color: #112236;
+      background: #ffffff;
       scroll-behavior: smooth;
     }
 
@@ -22,6 +22,45 @@
       align-items: center;
       text-align: center;
       padding: 20px;
+      position: relative;
+    }
+
+    /* 🔹 Botón siguiente sección */
+    .next-btn {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      background: #436280;
+      color: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(17,34,54,0.2);
+      z-index: 10;
+    }
+    .next-btn:hover {
+      background: #112236;
+    }
+
+    /* 🔹 Botón volver arriba */
+    .back-btn {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      background: #436280;
+      color: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(17,34,54,0.2);
+      z-index: 10;
+    }
+    .back-btn:hover {
+      background: #112236;
     }
 
     /* 🔹 Slide con foto */
@@ -51,7 +90,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(17,34,54,0.55); /* navy semi-transparente */
+      background: rgba(17,34,54,0.55);
     }
     .cover-content {
       position: absolute;
@@ -71,14 +110,14 @@
       padding: 12px 24px;
       border: none;
       border-radius: 25px;
-      background: #436280; /* azul medio */
+      background: #436280;
       color: #ffffff;
       font-size: 1rem;
       cursor: pointer;
       box-shadow: 0 4px 6px rgba(17,34,54,0.2);
     }
     .cover button:hover {
-      background: #112236; /* navy */
+      background: #112236;
     }
 
     /* Cronómetro */
@@ -86,7 +125,7 @@
       margin-top: 15px;
       font-size: 1.4rem;
       font-weight: bold;
-      color: #dbe4ed; /* tono claro para contraste */
+      color: #dbe4ed;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
     }
 
@@ -96,12 +135,11 @@
       .cover p { font-size: 1.4rem; }
       .cover button { font-size: 1.1rem; }
       .countdown { font-size: 1.8rem; }
+      .next-btn, .back-btn { font-size: 1rem; padding: 12px 22px; }
     }
 
     /* RSVP */
-    #rsvp {
-      background: #dbe4ed; /* fondo suave */
-    }
+    #rsvp { background: #dbe4ed; }
     form {
       display: flex;
       flex-direction: column;
@@ -125,9 +163,7 @@
     }
 
     /* Mapa */
-    #mapa {
-      background: #ffffff;
-    }
+    #mapa { background: #ffffff; }
     iframe {
       width: 90%;
       height: 60vh;
@@ -137,9 +173,7 @@
     }
 
     /* Dress code */
-    #dresscode {
-      background: #dbe4ed;
-    }
+    #dresscode { background: #dbe4ed; }
     .dresscode {
       display: flex;
       flex-direction: column;
@@ -173,6 +207,7 @@
   <!-- Invitación oficial -->
   <section class="cover-photo" id="inviteSection">
     <img src="invite.png" alt="Invitación oficial">
+    <button class="next-btn" onclick="document.getElementById('rsvp').scrollIntoView()">Siguiente sección</button>
   </section>
 
   <!-- RSVP -->
@@ -187,6 +222,7 @@
       </select>
       <button type="submit">Enviar</button>
     </form>
+    <button class="next-btn" onclick="document.getElementById('mapa').scrollIntoView()">Siguiente sección</button>
   </section>
 
   <!-- Mapa -->
@@ -197,6 +233,7 @@
       src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15505.679601754153!2d-89.2372108!3d13.6929997!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f63315ad92b2fd9%3A0x5bb61c996c7bafbd!2sFogo%20Bonito!5e0!3m2!1ses-419!2ssv!4v1755807075540!5m2!1ses-419!2ssv"
       allowfullscreen="" loading="lazy">
     </iframe>
+    <button class="next-btn" onclick="document.getElementById('dresscode').scrollIntoView()">Siguiente sección</button>
   </section>
 
   <!-- Dress code -->
@@ -206,11 +243,12 @@
       <img src="formal.jpg" alt="Formal">
       <p>Elegante • Azul Navy & Blanco</p>
     </div>
+    <button class="back-btn" onclick="document.getElementById('coverSection').scrollIntoView()">Volver arriba</button>
   </section>
 
   <!-- Scripts -->
   <script>
-    // Slide transition
+    // Slide transition (click/keydown to skip portada)
     let hasTransitioned = false;
     const coverPhoto = document.getElementById("coverSection");
     const nextSection = document.getElementById("inviteSection");

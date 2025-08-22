@@ -202,6 +202,27 @@
 </head>
 <body>
 
+  <!-- 🎵 Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 🎵 Toggle Button -->
+  <button id="musicToggle" style="
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 999;
+    padding: 10px 18px;
+    border-radius: 25px;
+    background: #436280;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(17,34,54,0.2);
+  ">Reproducir</button>
+  
   <!-- Portada con texto -->
   <section class="cover" id="coverSection">
     <img src="cover.png" alt="Invitación portada">

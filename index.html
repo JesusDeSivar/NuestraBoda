@@ -146,19 +146,19 @@
 </head>
 <body>
 
-  <!-- Slide solo foto -->
-  <section class="cover-photo" id="foto">
-    <img src="invite.png" alt="Invitación portada">
-  </section>
-
   <!-- Portada con texto -->
-  <section class="cover" id="home">
-    <img src="invite.png" alt="Invitación portada con texto">
+  <section class="cover" id="coverSection">
+    <img src="invite.png" alt="Invitación portada">
     <div class="cover-content">
       <h1>¡Nos casamos!</h1>
       <p>Francisco & Marjorie • 16 Noviembre 2025</p>
       <button onclick="document.getElementById('rsvp').scrollIntoView()">Ver invitación</button>
     </div>
+  </section>
+
+  <!-- Invitación oficial -->
+  <section class="cover-photo" id="inviteSection">
+    <img src="invite.png" alt="Invitación oficial">
   </section>
 
   <!-- RSVP -->
@@ -194,7 +194,7 @@
     </div>
   </section>
 
-  <!-- First slide transition script -->
+  <!-- Modify slide transition script -->
   <script>
     let hasTransitioned = false;
     const coverPhoto = document.getElementById("foto");

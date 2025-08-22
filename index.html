@@ -9,7 +9,8 @@
       margin: 0;
       padding: 0;
       font-family: "Helvetica Neue", sans-serif;
-      color: #112236; /* azul navy */
+      color: #112236; /* navy blue */
+      background: #ffffff; /* énfasis en blanco */
       scroll-behavior: smooth;
     }
 
@@ -23,7 +24,7 @@
       padding: 20px;
     }
 
-    /* 🔹 Cambiado: usar <img> en lugar de background para mejor ajuste en móvil/escritorio */
+    /* 🔹 Slide con foto */
     .cover-photo, 
     .cover {
       display: flex;
@@ -31,28 +32,29 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      background: #ffffff;
     }
 
     .cover-photo img,
     .cover img {
       width: 100%;
       height: 100%;
-      max-width: 720px;    /* 🔹 asegura que no se deforme en pantallas grandes */
-      object-fit: contain; /* 🔹 mantiene proporciones exactas de 720x907 */
+      max-width: 720px;
+      object-fit: contain;
     }
 
-    /* Portada con texto encima */
+    /* Portada con overlay */
     .cover {
-      color: white;
+      color: #ffffff;
     }
     .cover::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.4);
+      background: rgba(17,34,54,0.55); /* navy semi-transparente */
     }
     .cover-content {
-      position: absolute; /* 🔹 superpone el texto */
+      position: absolute;
       z-index: 1;
       text-align: center;
       padding: 20px;
@@ -66,13 +68,17 @@
       padding: 12px 24px;
       border: none;
       border-radius: 25px;
-      background: #436280;
-      color: white;
+      background: #436280; /* azul medio */
+      color: #ffffff;
       font-size: 1rem;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(17,34,54,0.2);
+    }
+    .cover button:hover {
+      background: #112236; /* navy */
     }
 
-    /* 🔹 Ajustes responsivos */
+    /* 🔹 Responsivo */
     @media (min-width: 768px) {
       .cover h1 { font-size: 3rem; }
       .cover p { font-size: 1.2rem; }
@@ -80,6 +86,9 @@
     }
 
     /* RSVP */
+    #rsvp {
+      background: #dbe4ed; /* fondo suave */
+    }
     form {
       display: flex;
       flex-direction: column;
@@ -95,19 +104,29 @@
     }
     form button {
       background: #436280;
-      color: white;
+      color: #ffffff;
       border: none;
+    }
+    form button:hover {
+      background: #112236;
     }
 
     /* Mapa */
+    #mapa {
+      background: #ffffff;
+    }
     iframe {
       width: 90%;
       height: 60vh;
       border: none;
       border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(17,34,54,0.15);
     }
 
-    /* Vestimenta */
+    /* Dress code */
+    #dresscode {
+      background: #dbe4ed;
+    }
     .dresscode {
       display: flex;
       flex-direction: column;
@@ -116,6 +135,12 @@
     }
     .dresscode img {
       width: 80px;
+      border: 2px solid #436280;
+      border-radius: 8px;
+    }
+    .dresscode p {
+      color: #112236;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -123,13 +148,11 @@
 
   <!-- Slide solo foto -->
   <section class="cover-photo" id="foto">
-    <!-- 🔹 cambio: usar img para mantener proporciones -->
     <img src="invite.png" alt="Invitación portada">
   </section>
 
   <!-- Portada con texto -->
   <section class="cover" id="home">
-    <!-- 🔹 cambio: usar img + overlay -->
     <img src="invite.png" alt="Invitación portada con texto">
     <div class="cover-content">
       <h1>¡Nos casamos!</h1>
@@ -173,7 +196,6 @@
 
   <!-- First slide transition script -->
   <script>
-    // Transition from first photo slide to cover with text
     let hasTransitioned = false;
     const coverPhoto = document.getElementById("foto");
     const nextSection = document.getElementById("home");
@@ -185,7 +207,6 @@
        }
     }
 
-    // Listen for first interaction
     coverPhoto.addEventListener("click", triggerFirstScroll);
     window.addEventListener("keydown", triggerFirstScroll);
   </script>

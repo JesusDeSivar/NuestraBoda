@@ -317,5 +317,36 @@
     setInterval(updateCountdown, 60000); // actualizar cada minuto
   </script>
 
+  <script>
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isPlaying = false;
+
+    // Play music after first user interaction (required for mobile/Chrome autoplay)
+    function startMusic() {
+      if (!isPlaying) {
+        bgMusic.play().catch(() => {}); // Ignore autoplay block
+        musicToggle.innerText = 'Pause Music';
+        isPlaying = true;
+      }
+    }
+
+    // Toggle button
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicToggle.innerText = 'Play Music';
+      } else {
+        bgMusic.play();
+        musicToggle.innerText = 'Pause Music';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Optional: trigger music on any page click/keydown to satisfy autoplay rules
+    window.addEventListener('click', startMusic, { once: true });
+    window.addEventListener('keydown', startMusic, { once: true });
+  </script>
+
 </body>
 </html>

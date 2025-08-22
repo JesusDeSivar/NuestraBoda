@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación de Boda</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", sans-serif;
+      color: #112236; /* azul navy */
+      scroll-behavior: smooth;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Nueva portada inicial (foto sola) */
+    .cover-photo {
+      background: url("invite.png") no-repeat center center/cover;
+    }
+
+    /* Portada con texto */
+    .cover {
+      background: url("invite.png") no-repeat center center/cover;
+      color: white;
+      position: relative;
+    }
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .cover-content {
+      position: relative;
+      z-index: 1;
+    }
+    .cover h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .cover button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      background: #436280;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* RSVP */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 90%;
+      max-width: 350px;
+    }
+    input, select, button {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #a3bad2;
+      font-size: 1rem;
+    }
+    form button {
+      background: #436280;
+      color: white;
+      border: none;
+    }
+
+    /* Mapa */
+    iframe {
+      width: 90%;
+      height: 60vh;
+      border: none;
+      border-radius: 12px;
+    }
+
+    /* Vestimenta */
+    .dresscode {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .dresscode img {
+      width: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide solo foto -->
+  <section class="cover-photo" id="foto">
+  </section>
+
+  <!-- Portada con texto -->
+  <section class="cover" id="home">
+    <div class="cover-content">
+      <h1>¡Nos casamos!</h1>
+      <p>Novio & Novia • dd Mes 20xx</p>
+      <button onclick="document.getElementById('rsvp').scrollIntoView()">Ver invitación</button>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp">
+    <h2>Confirma tu asistencia</h2>
+    <form>
+      <input type="text" placeholder="Tu nombre" required>
+      <select required>
+        <option value="">¿Asistirás?</option>
+        <option>Sí, con mucho gusto</option>
+        <option>No puedo asistir</option>
+      </select>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Mapa -->
+  <section id="mapa">
+    <h2>Ubicación</h2>
+    <p>Fogo Bonito, San Salvador</p>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15505.679601754153!2d-89.2372108!3d13.6929997!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f63315ad92b2fd9%3A0x5bb61c996c7bafbd!2sFogo%20Bonito!5e0!3m2!1ses-419!2ssv!4v1755807075540!5m2!1ses-419!2ssv"
+      allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+  <!-- Dress code -->
+  <section id="dresscode">
+    <h2>Código de vestimenta</h2>
+    <div class="dresscode">
+      <img src="formal.jpg" alt="Formal">
+      <p>Elegante • Azul Navy & Blanco</p>
+    </div>
+  </section>
+
+  <!-- First slide transition script -->
+  <script>
+    // Transition from first photo slide to cover with text
+    let hasTransitioned = false;
+    const coverPhoto = document.getElementById("foto");
+    const nextSection = document.getElementById("home");
+
+    function triggerFirstScroll() {
+       if (!hasTransitioned) {
+          hasTransitioned = true;
+          nextSection.scrollIntoView({ behavior: "smooth" });
+       }
+    }
+
+    // Listen for first interaction
+    coverPhoto.addEventListener("click", triggerFirstScroll);
+    window.addEventListener("keydown", triggerFirstScroll);
+    </script>
+
+</body>
+</html>

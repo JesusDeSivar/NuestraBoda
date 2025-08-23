@@ -348,5 +348,44 @@
     window.addEventListener('keydown', startMusic, { once: true });
   </script>
 
+  <!-- Conexión a google sheets para RSVP -->
+  <script>
+    const form = document.getElementById("rsvpForm");
+
+    // Replace with your deployed Web App URL
+    const webAppURL = "https://script.google.com/macros/s/AKfycbxBpAvOvs0RaNqrEaCZNu5g9ltg7WSuhzGgztNT-jonzY0c5oOBHq0eHr1pX73CdAAY/exec";
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("nombre"),
+        rsvp: formData.get("rsvp_question")
+      };
+
+      fetch(webAppURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.result === "success") {
+            alert("¡Gracias por responder!");
+            form.reset();
+          } else {
+            alert("Problemas técnicos: " + result.message);
+          }
+        })
+        .catch((error) => {
+          alert("No pudimos recibir tu respuesta :(.");
+          console.error(error);
+        });
+    });
+  </script>
+
 </body>
 </html>

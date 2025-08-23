@@ -243,16 +243,9 @@
   <!-- RSVP -->
   <section id="rsvp">
     <h2>Confirma tu asistencia</h2>
-    <form id="rsvpForm">
-      <input type="text" name="nombre" placeholder="Tu nombre" required>
-      <select name="rsvp_respuesta" required>
-        <option value="">¿Asistirás?</option>
-        <option value="Sí">Sí, con mucho gusto</option>
-        <option value="No">No puedo asistir</option>
-      </select>
-      <button type="submit">Enviar</button>
-    </form>
-    <button class="next-btn" onclick="document.getElementById('mapa').scrollIntoView()">Siguiente</button>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeizKKcuNIBSA22pcK27EDgWYhTKvKYtjZKORU92SsuPM8Q_w/viewform?embedded=true"
+        width="640" height="510" frameborder="0" marginheight="0" marginwidth="0">
+      Cargando…</iframe>
   </section>
 
   <!-- Mapa -->
@@ -346,47 +339,6 @@
     // Optional: trigger music on any page click/keydown to satisfy autoplay rules
     window.addEventListener('click', startMusic, { once: true });
     window.addEventListener('keydown', startMusic, { once: true });
-  </script>
-
-  <!-- Conexión a google sheets para RSVP -->
-  <script>
-    const form = document.getElementById("rsvpForm");
-
-    // Replace with your deployed Web App URL
-    const webAppURL = "https://script.google.com/macros/s/AKfycbxBpAvOvs0RaNqrEaCZNu5g9ltg7WSuhzGgztNT-jonzY0c5oOBHq0eHr1pX73CdAAY/exec";
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-      const data = {
-        nombre: formData.get("nombre"),
-        rsvp_respuesta: formData.get("rsvp_respuesta")
-      };
-
-      fetch(webAppURL, {
-        redirect: "follow",
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log("Respuesta del servidor:", result);  // 👈 Aquí ves qué devuelve tu Web App
-          if (result.result === "success") {
-            alert("¡Gracias por responder!");
-            form.reset();
-          } else {
-            alert("Problemas técnicos: " + result.message);
-          }
-        })
-        .catch((error) => {
-          console.error("Error en el fetch:", error);
-          alert("Error: " + error);
-        });
-    });
   </script>
 
 </body>

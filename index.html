@@ -243,12 +243,12 @@
   <!-- RSVP -->
   <section id="rsvp">
     <h2>Confirma tu asistencia</h2>
-    <form>
-      <input type="text" placeholder="Tu nombre" required>
-      <select required>
+    <form id="rsvpForm">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <select name="rsvp_question" required>
         <option value="">¿Asistirás?</option>
-        <option>Sí, con mucho gusto</option>
-        <option>No puedo asistir</option>
+        <option value="Sí">Sí, con mucho gusto</option>
+        <option value="No">No puedo asistir</option>
       </select>
       <button type="submit">Enviar</button>
     </form>

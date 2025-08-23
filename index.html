@@ -373,6 +373,7 @@
       })
         .then((response) => response.json())
         .then((result) => {
+          console.log("Respuesta del servidor:", result);  // 👈 Aquí ves qué devuelve tu Web App
           if (result.result === "success") {
             alert("¡Gracias por responder!");
             form.reset();
@@ -381,8 +382,8 @@
           }
         })
         .catch((error) => {
-          alert("No pudimos recibir tu respuesta :(.");
-          console.error(error);
+          console.error("Error en el fetch:", error);
+          alert("Error: " + error);
         });
     });
   </script>

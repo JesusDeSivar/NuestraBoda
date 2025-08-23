@@ -245,7 +245,7 @@
     <h2>Confirma tu asistencia</h2>
     <form id="rsvpForm">
       <input type="text" name="nombre" placeholder="Tu nombre" required>
-      <select name="rsvp_question" required>
+      <select name="rsvp_respuesta" required>
         <option value="">¿Asistirás?</option>
         <option value="Sí">Sí, con mucho gusto</option>
         <option value="No">No puedo asistir</option>
@@ -360,8 +360,8 @@
 
       const formData = new FormData(form);
       const data = {
-        name: formData.get("nombre"),
-        rsvp: formData.get("rsvp_question")
+        nombre: formData.get("nombre"),
+        rsvp_respuesta: formData.get("rsvp_respuesta")
       };
 
       fetch(webAppURL, {

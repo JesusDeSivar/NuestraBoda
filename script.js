@@ -1,69 +1,94 @@
-// Scripts for "NuestraBoda"
+// WOW Wedding Invitation Script ✨
 
-// Slide transition (click/keydown to skip portada)
+// Smooth section fade-in on scroll
+const sections = document.querySelectorAll("section");
+const revealOnScroll = () => {
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8) {
+      sec.classList.add("visible");
+    }
+  });
+};
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+// Countdown
+const countdownEl = document.getElementById("countdown");
+const weddingDate = new Date("2025-11-16T16:00:00").getTime();
+
+function updateCountdown() {
+  const now = Date.now();
+  const distance = weddingDate - now;
+
+  if (distance <= 0) {
+    countdownEl.innerHTML = "¡Hoy es el gran día!";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Animated flip effect
+  countdownEl.innerHTML = `
+    <span class="flip">${days}d</span> • 
+    <span class="flip">${hours}h</span> • 
+    <span class="flip">${minutes}m</span> • 
+    <span class="flip">${seconds}s</span>
+  `;
+
+  // Trigger animation
+  const flips = countdownEl.querySelectorAll(".flip");
+  flips.forEach(flip => {
+    flip.classList.remove("animate");
+    void flip.offsetWidth; // restart animation
+    flip.classList.add("animate");
+  });
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Music toggle
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+let isPlaying = false;
+
+function startMusic() {
+  if (!isPlaying) {
+    bgMusic.play().catch(() => {});
+    musicToggle.innerHTML = "⏸";
+    isPlaying = true;
+  }
+}
+
+musicToggle.addEventListener("click", () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicToggle.innerHTML = "▶";
+  } else {
+    bgMusic.play();
+    musicToggle.innerHTML = "⏸";
+  }
+  isPlaying = !isPlaying;
+});
+
+// Enable autoplay after user gesture
+window.addEventListener("click", startMusic, { once: true });
+window.addEventListener("keydown", startMusic, { once: true });
+
+// First scroll transition (click/keydown from portada)
 let hasTransitioned = false;
 const coverPhoto = document.getElementById("coverSection");
 const nextSection = document.getElementById("inviteSection");
 
 function triggerFirstScroll() {
-    if (!hasTransitioned) {
-        hasTransitioned = true;
-        nextSection.scrollIntoView({ behavior: "smooth" });
-    }
+  if (!hasTransitioned) {
+    hasTransitioned = true;
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
 }
-
 coverPhoto.addEventListener("click", triggerFirstScroll);
 window.addEventListener("keydown", triggerFirstScroll);
-
-// Countdown for wedding
-const countdownEl = document.getElementById("countdown");
-const weddingDate = new Date("2025-11-16T16:00:00").getTime();
-
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-
-    if (distance <= 0) {
-    countdownEl.innerHTML = "¡Hoy es el gran día!";
-    return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    countdownEl.innerHTML = `${days} días • ${hours} hrs • ${minutes} min`;
-}
-
-updateCountdown();
-setInterval(updateCountdown, 60000); // actualizar cada minuto
-
-// Music
-const bgMusic = document.getElementById('bgMusic');
-const musicToggle = document.getElementById('musicToggle');
-let isPlaying = false;
-
-    // Wait until first user interaction to autoplay music (required for mobile/Chrome autoplay)
-function startMusic() {
-    if (!isPlaying) {
-    bgMusic.play().catch(() => {}); // Ignore autoplay block
-    musicToggle.innerText = 'Pausar';
-    isPlaying = true;
-    }
-}
-
-    // Toggle button
-musicToggle.addEventListener('click', () => {
-    if (isPlaying) {
-    bgMusic.pause();
-    musicToggle.innerText = 'Play Music';
-    } else {
-    bgMusic.play();
-    musicToggle.innerText = 'Pause Music';
-    }
-    isPlaying = !isPlaying;
-});
-
-    // Optional: trigger music on any page click/keydown to satisfy autoplay rules
-window.addEventListener('click', startMusic, { once: true });
-window.addEventListener('keydown', startMusic, { once: true });

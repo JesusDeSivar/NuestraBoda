@@ -1,12 +1,14 @@
+/* Global */
 body, html {
     margin: 0;
     padding: 0;
-    font-family: "Helvetica Neue", sans-serif;
-    color: #112236;
-    background: #ffffff;
+    font-family: "Playfair Display", serif;
+    color: #2c2c2c;
+    background: #fff;
     scroll-behavior: smooth;
 }
 
+/* Sections */
 section {
     min-height: 100vh;
     display: flex;
@@ -16,193 +18,178 @@ section {
     text-align: center;
     padding: 20px;
     position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* 🔹 Botón siguiente sección */
-.next-btn {
-    position: absolute;
-    top: 100px;
-    right: 15px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 25px;
-    background: #436280;
-    color: #ffffff;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(17,34,54,0.2);
-    z-index: 10;
-}
-.next-btn:hover {
-    background: #112236;
-}
-
-/* 🔹 Botón volver arriba */
-.back-btn {
-    position: absolute;
-    bottom: 100px;
-    left: 15px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 25px;
-    background: #436280;
-    color: #ffffff;
-    font-size: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(17,34,54,0.2);
-    z-index: 10;
-}
-.back-btn:hover {
-    background: #112236;
-}
-
-/* 🔹 Slide con foto */
-.cover-photo, 
+/* Cover */
 .cover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: #fff;
     position: relative;
     overflow: hidden;
-    background: #ffffff;
-}
-
-.cover-photo img,
-.cover img {
-    width: 100%;
-    height: 100%;
-    max-width: 720px;
-    object-fit: contain;
-}
-
-/* Portada con overlay */
-.cover {
-    color: #ffffff;
 }
 .cover::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(17,34,54,0.55);
+    background: rgba(0,0,0,0.55);
 }
 .cover-content {
     position: absolute;
     z-index: 1;
     text-align: center;
-    padding: 20px;
+    animation: fadeInUp 2s ease forwards;
 }
 .cover h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 .cover p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin-bottom: 10px;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.5);
 }
 .cover button {
     margin-top: 20px;
-    padding: 12px 24px;
+    padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 28px);
     border: none;
-    border-radius: 25px;
-    background: #436280;
-    color: #ffffff;
-    font-size: 1rem;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #e0b25b, #d17f6b);
+    color: #fff;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(17,34,54,0.2);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .cover button:hover {
-    background: #112236;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
 }
 
-/* Cronómetro */
+/* Countdown */
 .countdown {
-    margin-top: 15px;
-    font-size: 1.4rem;
+    margin-top: 20px;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
     font-weight: bold;
-    color: #dbe4ed;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    color: #ffe9c6;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    animation: pulse 2s infinite;
 }
 
-/* 🔹 Responsivo */
-@media (min-width: 768px) {
-    .cover h1 { font-size: 3rem; }
-    .cover p { font-size: 1.4rem; }
-    .cover button { font-size: 1.1rem; }
-    .countdown { font-size: 1.8rem; }
-    .next-btn, .back-btn { font-size: 1rem; padding: 12px 22px; }
+/* Buttons (next/back) */
+.next-btn, .back-btn {
+    padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 28px);
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #6a85b6, #bac8e0);
+    color: #fff;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 10;
+    position: absolute;
 }
+.next-btn:hover, .back-btn:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #4a65a3, #a1b5d8);
+}
+.next-btn { top: clamp(60px, 12vh, 100px); right: 15px; }
+.back-btn { bottom: clamp(60px, 12vh, 100px); left: 15px; }
 
 /* RSVP */
-#rsvp { background: #dbe4ed; }
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 90%;
-    max-width: 350px;
+#rsvp {
+    background: linear-gradient(180deg, #f8f8f8, #e8eef6);
 }
-input, select, button {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #a3bad2;
-    font-size: 1rem;
-}
-form button {
-    background: #436280;
-    color: #ffffff;
-    border: none;
-}
-form button:hover {
-    background: #112236;
-}
-
-/* Mapa */
-#mapa { background: #ffffff; }
 iframe {
-    width: 90%;
+    width: 100%;
+    max-width: 700px;
     height: 60vh;
     border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(17,34,54,0.15);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* Dress code */
-#dresscode { background: #dbe4ed; }
+/* Map */
+#mapa {
+    background: #fff;
+}
+#mapa iframe {
+    width: 100%;
+    max-width: 700px;
+    height: 60vh;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* Dresscode */
+#dresscode {
+    background: linear-gradient(180deg, #e8eef6, #f8f8f8);
+}
 .dresscode {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 .dresscode img {
-    width: 80px;
-    border: 2px solid #436280;
-    border-radius: 8px;
+    width: clamp(60px, 20vw, 100px);
+    border: 3px solid #6a85b6;
+    border-radius: 12px;
 }
 .dresscode p {
-    color: #112236;
+    color: #2c2c2c;
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
-/* 🔹 Botones más grandes y redondeados para móvil */
-@media (max-width: 767px) {
-    .next-btn, .back-btn {
-    padding: 16px 28px;       /* Más grande */
-    font-size: 1.2rem;        /* Texto más grande */
-    border-radius: 40px;      /* Más redondo */
-    }
-}
-
-/* Style for musicToggle button */
+/* Music Toggle */
 #musicToggle {
     position: fixed;
-    top: 15px;
-    left: 15px;
+    top: 20px;
+    left: 20px;
     z-index: 999;
-    padding: 10px 18px;
-    border-radius: 25px;
-    background: #436280;
-    color: #ffffff;
-    font-size: 1rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #e0b25b, #d17f6b);
+    color: #fff;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(17,34,54,0.2)
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+#musicToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Countdown Flip Animation */
+.flip {
+  display: inline-block;
+  transition: transform 0.4s ease, color 0.4s ease;
+}
+.flip.animate {
+  transform: rotateX(360deg);
+  color: #ffd27f;
 }

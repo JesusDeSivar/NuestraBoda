@@ -32,6 +32,8 @@ section.visible {
     color: #fff;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 100vh;              /* full screen height */
 }
 .cover::after {
     content: "";
@@ -71,6 +73,16 @@ section.visible {
 .cover button:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+/* Make cover image behave like a background */
+.cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          /* ✅ fills the area, crops if needed */
+    z-index: 0;
 }
 
 /* Countdown */

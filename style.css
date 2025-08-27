@@ -10,7 +10,7 @@ body, html {
 
 /* Sections */
 section {
-    min-height: 100vh;
+    min-height: 100vh;   /* ✅ simpler and stable than 100dvh */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +32,7 @@ section.visible {
     position: relative;
     overflow: hidden;
     width: 100%;
-    min-height: 100dvh;   /* ✅ dynamic viewport height for mobile */
+    min-height: 100vh;   /* ✅ consistent full height */
 }
 .cover::after {
     content: "";
@@ -47,13 +47,13 @@ section.visible {
     animation: fadeInUp 2s ease forwards;
 }
 .cover h1 {
-    font-size: clamp(3rem, 7vw, 4rem);
+    font-size: clamp(2rem, 7vw, 3.5rem);  /* ✅ reduced for small screens */
     margin-bottom: 15px;
     letter-spacing: 2px;
     text-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 .cover p {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(1.2rem, 6vw, 2rem);  /* ✅ reduced for mobile */
     margin-bottom: 10px;
     text-shadow: 0 3px 8px rgba(0,0,0,0.5);
 }
@@ -64,7 +64,7 @@ section.visible {
     border-radius: 40px;
     background: linear-gradient(135deg, #6a85b6, #bac8e0);
     color: #fff;
-    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    font-size: clamp(1rem, 3vw, 1.2rem);
     cursor: pointer;
     box-shadow: 0 6px 14px rgba(0,0,0,0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -73,14 +73,14 @@ section.visible {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 20px rgba(0,0,0,0.35);
 }
-/* Make cover image behave like a background */
+
+/* ✅ Cover image now fits without cropping */
 .cover img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;         /* removed absolute */
     width: 100%;
-    height: 100%;
-    object-fit: cover;          /* ✅ fills the area, crops if needed */
+    height: auto;               /* keep proportions */
+    max-width: 720px;
+    object-fit: contain;        /* ✅ always fits */
     z-index: 0;
 }
 
@@ -93,10 +93,9 @@ section.visible {
     overflow: hidden;
     background: #ffffff;
 }
-
 .invite img {
     width: 100%;
-    height: 100%;
+    height: auto;               /* ✅ avoid stretching */
     max-width: 720px;
     object-fit: contain;
 }
@@ -104,7 +103,7 @@ section.visible {
 /* Countdown */
 .countdown {
     margin-top: 20px;
-    font-size: clamp(2.4rem, 10vw, 2.6rem);
+    font-size: clamp(1.6rem, 8vw, 2.4rem); /* ✅ smaller on phones */
     font-weight: bold;
     color: #1b2a49;
     text-shadow: 0 2px 6px rgba(0,0,0,0.4);
@@ -137,7 +136,7 @@ section.visible {
     background: linear-gradient(180deg, #f8f8f8, #e8eef6);
 }
 iframe {
-    width: 100%;
+    width: 90%;                 /* ✅ fits smaller screens */
     max-width: 700px;
     height: 60vh;
     border: none;
@@ -150,7 +149,7 @@ iframe {
     background: #fff;
 }
 #mapa iframe {
-    width: 100%;
+    width: 90%;                 /* ✅ same adjustment */
     max-width: 700px;
     height: 60vh;
     border-radius: 16px;

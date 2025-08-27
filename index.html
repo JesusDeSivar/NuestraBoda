@@ -15,21 +15,22 @@
   </audio>
 
   <!-- 🎵 Toggle Button -->
-  <button id="musicToggle">Reproducir</button>
+  <button id="musicToggle">▶</button>
   
   <!-- Portada con texto -->
   <section class="cover" id="coverSection">
     <img src="assets/img/cover.png" alt="Invitación portada">
     <div class="cover-content">
       <h1>¡Nos casamos!</h1>
-      <p>Francisco & Marjorie • 16 Noviembre 2025</p>
+      <p>Francisco & Marjorie</p>
+      <p>16 Noviembre 2025</p>
       <div class="countdown" id="countdown"></div>
-      <button onclick="document.getElementById('inviteSection').scrollIntoView()">Ver invitación</button>
+      <button onclick="document.getElementById('inviteSection').scrollIntoView()">¡Acompáñanos!</button>
     </div>
   </section>
 
   <!-- Invitación oficial -->
-  <section class="cover-photo" id="inviteSection">
+  <section class="invite" id="inviteSection">
     <img src="assets/img/invite.png" alt="Invitación oficial">
     <button class="next-btn" onclick="document.getElementById('rsvp').scrollIntoView()">Siguiente</button>
   </section>

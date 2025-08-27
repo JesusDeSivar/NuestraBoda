@@ -6,6 +6,7 @@ body, html {
     color: #2c2c2c;
     background: #fff;
     scroll-behavior: smooth;
+    overflow-x: hidden;  /* extra safety */
 }
 
 /* Sections */
@@ -79,7 +80,8 @@ section.visible {
     position: relative;         /* removed absolute */
     width: 100%;
     height: auto;               /* keep proportions */
-    max-width: 720px;
+    display: block;     /* ✅ removes tiny inline spacing */
+    max-width: 100%;    /* ✅ prevents overflow */
     object-fit: contain;        /* ✅ always fits */
     z-index: 0;
 }
@@ -96,7 +98,8 @@ section.visible {
 .invite img {
     width: 100%;
     height: auto;               /* ✅ avoid stretching */
-    max-width: 720px;
+    max-width: 100%;    /* ✅ prevents horizontal scroll */
+    display: block;     /* ✅ removes tiny inline spacing */
     object-fit: contain;
 }
 

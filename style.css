@@ -113,26 +113,40 @@ section.visible {
     animation: pulse 2s infinite;
 }
 
-/* Buttons (next/back) */
-.next-btn, .back-btn {
-    padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 28px);
-    border: none;
-    border-radius: 40px;
-    background: linear-gradient(135deg, #6a85b6, #bac8e0);
-    color: #fff;
-    font-size: clamp(0.9rem, 3vw, 1rem);
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease, background 0.3s ease;
-    z-index: 10;
-    position: absolute;
+/* Navigation wrapper */
+.nav-wrapper {
+  position: absolute;
+  bottom: 20px;   /* keep wrapper anchored near bottom */
+  left: 0;
+  right: 0;
+  pointer-events: none; /* wrapper itself ignores clicks */
 }
-.next-btn:hover, .back-btn:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(135deg, #4a65a3, #a1b5d8);
+
+/* Shared styles */
+.nav-wrapper img {
+  position: absolute;
+  bottom: 20px;        /* ✅ raised above bottom */
+  pointer-events: auto;  
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  object-fit: contain;
+  width: 80px;          /* fixed size */
+  height: auto;
 }
-.next-btn { top: clamp(60px, 12vh, 100px); right: 15px; }
-.back-btn { bottom: clamp(60px, 12vh, 100px); left: 15px; }
+
+/* Bride → bottom-right */
+.bride-btn {
+  right: 20px;
+}
+
+/* Groom → bottom-left */
+.groom-btn {
+  left: 20px;
+}
+
+.nav-wrapper img:hover {
+  transform: scale(1.1);
+}
 
 /* RSVP */
 #rsvp {

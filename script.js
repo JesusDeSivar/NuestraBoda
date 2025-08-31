@@ -15,7 +15,7 @@ window.addEventListener("load", revealOnScroll);
 
 // Countdown
 const countdownEl = document.getElementById("countdown");
-const weddingDate = new Date("2025-11-16T16:00:00").getTime();
+const weddingDate = new Date("2025-11-16T15:00:00").getTime();
 
 function updateCountdown() {
   const now = Date.now();

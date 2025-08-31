@@ -11,31 +11,34 @@
   <!-- 🎵 Background Music -->
   <audio id="bgMusic" loop>
     <source src="assets/music/song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    Tu navegador no soporta el audio.
   </audio>
 
   <!-- 🎵 Toggle Button -->
-  <button id="musicToggle">▶</button>
+  <button id="musicToggle" aria-label="Reproducir música">▶</button>
   
-  <!-- Portada con texto -->
+  <!-- Portada -->
   <section class="cover" id="coverSection">
-    <img src="assets/img/cover.png" alt="Invitación portada">
+    <img src="assets/img/cover.png" alt="Francisco y Marjorie, invitación de boda">
     <div class="cover-content">
       <h1>¡Nos casamos!</h1>
       <p>Francisco & Marjorie</p>
       <p>16 Noviembre 2025</p>
-      <div class="countdown" id="countdown"></div>
-      <button onclick="document.getElementById('inviteSection').scrollIntoView()">¡Acompáñanos!</button>
+      <div class="countdown" id="countdown">Faltan pocos días…</div>
+      <button onclick="document.getElementById('inviteSection').scrollIntoView({behavior:'smooth'})">
+        ¡Acompáñanos!
+      </button>
     </div>
   </section>
 
   <!-- Invitación oficial -->
   <section class="invite" id="inviteSection">
-    <img src="assets/img/invite.png" alt="Invitación oficial">
+    <img src="assets/img/invite.png" alt="Invitación digital oficial con detalles del evento" loading="lazy">
     <div class="nav-wrapper">
-    <img src="assets/img/bride.png" 
+      <img src="assets/img/bride.png" 
         class="bride-btn" 
-        alt="Siguiente" 
+        alt="Ir al mapa" 
+        loading="lazy"
         onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">
     </div>
   </section>
@@ -46,12 +49,13 @@
     <p>Fogo Bonito, San Salvador</p>
     <iframe 
       src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15505.679601754153!2d-89.2372108!3d13.6929997!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f63315ad92b2fd9%3A0x5bb61c996c7bafbd!2sFogo%20Bonito!5e0!3m2!1ses-419!2ssv!4v1755807075540!5m2!1ses-419!2ssv"
-      allowfullscreen="" loading="lazy">
+      allowfullscreen="" loading="lazy" title="Mapa de ubicación de la boda">
     </iframe>
     <div class="nav-wrapper">
-    <img src="assets/img/bride.png" 
+      <img src="assets/img/bride.png" 
         class="bride-btn" 
-        alt="Siguiente" 
+        alt="Ir al dresscode" 
+        loading="lazy"
         onclick="document.getElementById('dresscode').scrollIntoView({behavior: 'smooth'})">
     </div>
   </section>
@@ -60,13 +64,14 @@
   <section id="dresscode">
     <h2>Código de vestimenta</h2>
     <div class="dresscode">
-      <img src="assets/img/formal.png" alt="Formal">
+      <img src="assets/img/formal.png" alt="Etiqueta formal: Azul Navy y Blanco" loading="lazy">
       <p>Elegante • Azul Navy & Blanco</p>
     </div>
     <div class="nav-wrapper">
-    <img src="assets/img/bride.png" 
+      <img src="assets/img/bride.png" 
         class="bride-btn" 
-        alt="Siguiente" 
+        alt="Ir a RSVP" 
+        loading="lazy"
         onclick="document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'})">
     </div>
   </section>
@@ -74,15 +79,21 @@
   <!-- RSVP -->
   <section id="rsvp">
     <h2>Confirma tu asistencia</h2>
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdUBd6zSgkLaLd6nbSl96OjuMPoWd3cSBsbDT5QneU0TLgvPQ/viewform?embedded=true"
-        width="640" height="1033" frameborder="0" marginheight="0" marginwidth="0">
-        Cargando…
-      </iframe>
+    <p>Por favor llena el formulario a continuación:</p>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSdUBd6zSgkLaLd6nbSl96OjuMPoWd3cSBsbDT5QneU0TLgvPQ/viewform?embedded=true"
+      width="640" height="800" frameborder="0" marginheight="0" marginwidth="0" loading="lazy"
+      title="Formulario de confirmación de asistencia">
+      Cargando…
+    </iframe>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSdUBd6zSgkLaLd6nbSl96OjuMPoWd3cSBsbDT5QneU0TLgvPQ/viewform" target="_blank" rel="noopener">
+      Abrir formulario en una nueva pestaña
+    </a></p>
     <div class="nav-wrapper">
-    <img src="assets/img/groom.png" 
+      <img src="assets/img/groom.png" 
         class="groom-btn" 
-        alt="Volver" 
+        alt="Volver al inicio" 
+        loading="lazy"
         onclick="document.getElementById('coverSection').scrollIntoView({behavior: 'smooth'})">
     </div>
   </section>

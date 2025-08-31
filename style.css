@@ -134,6 +134,12 @@ section.visible {
   height: auto;
 }
 
+/* Bride/Groom hover effect */
+.nav-wrapper img:hover {
+  transform: scale(1.15) rotate(-2deg);
+  filter: drop-shadow(0 0 8px rgba(106,133,182,0.6));
+}
+
 /* Bride → bottom-right */
 .bride-btn {
   right: 20px;
@@ -153,12 +159,12 @@ section.visible {
     background: linear-gradient(180deg, #f8f8f8, #e8eef6);
 }
 iframe {
-    width: 90%;                 /* ✅ fits smaller screens */
-    max-width: 700px;
-    height: 60vh;
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  width: 90%;
+  max-width: 600px;
+  height: 50vh; /* ✅ smaller height */
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 /* Map */

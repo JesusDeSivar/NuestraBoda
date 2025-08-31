@@ -31,7 +31,6 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Animated flip effect
   countdownEl.innerHTML = `
     <span class="flip">${days}d</span> • 
     <span class="flip">${hours}h</span> • 
@@ -39,11 +38,9 @@ function updateCountdown() {
     <span class="flip">${seconds}s</span>
   `;
 
-  // Trigger animation
-  const flips = countdownEl.querySelectorAll(".flip");
-  flips.forEach(flip => {
+  countdownEl.querySelectorAll(".flip").forEach(flip => {
     flip.classList.remove("animate");
-    void flip.offsetWidth; // restart animation
+    void flip.offsetWidth;
     flip.classList.add("animate");
   });
 }

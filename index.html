@@ -33,13 +33,19 @@
 
   <!-- Invitación oficial -->
   <section class="invite" id="inviteSection">
-    <img src="assets/img/invite.png" alt="Invitación digital oficial con detalles del evento" loading="lazy">
-    <div class="nav-wrapper">
-      <img src="assets/img/bride.png" 
-        class="bride-btn" 
-        alt="Ir al mapa" 
-        loading="lazy"
-        onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">
+    <div class="poster-container">
+      <img src="assets/img/invite.png"
+          alt="Invitación digital oficial con detalles del evento"
+          class="poster" loading="lazy">
+
+      <!-- bride button now positioned relative to poster-container -->
+      <div class="nav-wrapper poster-nav">
+        <img src="assets/img/bride.png"
+            class="bride-btn"
+            alt="Ir al mapa"
+            loading="lazy"
+            onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">
+      </div>
     </div>
   </section>
 
@@ -99,6 +105,10 @@
   </section>
 
   <!-- Scripts -->
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Custom script -->
   <script src="script.js"></script>
 
 </body>

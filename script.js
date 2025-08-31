@@ -89,3 +89,27 @@ function triggerFirstScroll() {
 }
 coverPhoto.addEventListener("click", triggerFirstScroll);
 window.addEventListener("keydown", triggerFirstScroll);
+
+// GSAP Poster Scroll Animation (defensive)
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo(".poster",
+    { y: -260, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      ease: "power2.out",
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".poster-container",
+        start: "top 85%",   // when poster container enters lower part of viewport
+        end: "center 40%",  // when it should be "landed"
+        scrub: 0.8,         // smooth link to scroll
+        // markers: true,   // <-- uncomment this line while debugging to see start/end
+      }
+    }
+  );
+} else {
+  console.warn("GSAP or ScrollTrigger not loaded. Make sure the GSAP scripts are above script.js");
+}

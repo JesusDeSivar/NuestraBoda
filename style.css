@@ -102,6 +102,45 @@ section.visible {
     display: block;     /* ✅ removes tiny inline spacing */
     object-fit: contain;
 }
+/* Make sure invite section remains visible for GSAP to animate it */
+.invite {
+  overflow: visible;          /* allow absolute children to show */
+  opacity: 1 !important;      /* skip the generic fade-in for this section */
+  transform: none !important;
+}
+/* New poster container — keeps poster and button together */
+.poster-container {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;            /* enough vertical space for animation */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;     /* poster enters from above */
+  padding-top: 6vh;            /* visual starting offset */
+  box-sizing: border-box;
+}
+/* Poster sizing */
+.poster {
+  width: clamp(320px, 50vw, 720px);
+  max-width: 90%;
+  height: auto;
+  display: block;
+  will-change: transform, opacity;
+}
+/* place bride button relative to the poster-container */
+.poster-nav {
+  position: absolute;
+  bottom: 10vh;                /* distance from bottom of poster container */
+  right: clamp(12px, 5vw, 24px);
+  pointer-events: auto;
+  z-index: 50;
+}
+/* revert the earlier global pointer-events:none on nav-wrapper for poster-nav */
+.poster-nav img {
+  width: 80px;
+  height: auto;
+  cursor: pointer;
+}
 
 /* Countdown */
 .countdown {

@@ -31,23 +31,35 @@
     </div>
   </section>
 
-  <!-- Invitación oficial -->
-  <section class="invite" id="inviteSection">
-    <div class="poster-container">
-      <img src="assets/img/invite.png"
-          alt="Invitación digital oficial con detalles del evento"
-          class="poster" loading="lazy">
-
-      <!-- bride button now positioned relative to poster-container -->
-      <div class="nav-wrapper poster-nav">
-        <img src="assets/img/bride.png"
-            class="bride-btn"
-            alt="Ir al mapa"
-            loading="lazy"
-            onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">
+<!-- Invitación oficial -->
+<section class="invite" id="inviteSection">
+  <div class="poster-container">
+    
+    <!-- Poster frame: anchors the poster in flow -->
+    <div class="poster-frame">
+      <div class="poster">
+        <img src="assets/img/layer1.png" class="layer" data-depth="0.1" loading="lazy" alt="Layer 1">
+        <img src="assets/img/layer2.png" class="layer" data-depth="0.2" loading="lazy" alt="Layer 2">
+        <img src="assets/img/layer3.png" class="layer" data-depth="0.3" loading="lazy" alt="Layer 3">
+        <img src="assets/img/layer4.png" class="layer" data-depth="0.4" loading="lazy" alt="Layer 4">
+        <img src="assets/img/layer5.png" class="layer" data-depth="0.5" loading="lazy" alt="Layer 5">
+        <img src="assets/img/layer6.png" class="layer" data-depth="0.6" loading="lazy" alt="Layer 6">
+        <img src="assets/img/layer7.png" class="layer" data-depth="0.7" loading="lazy" alt="Layer 7">
+        <img src="assets/img/layer8.png" class="layer" data-depth="0.8" loading="lazy" alt="Layer 8">
       </div>
     </div>
-  </section>
+
+    <!-- Bride button -->
+    <div class="nav-wrapper poster-nav">
+      <img src="assets/img/bride.png"
+          class="bride-btn"
+          alt="Ir al mapa"
+          loading="lazy"
+          onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">
+    </div>
+
+  </div>
+</section>
 
   <!-- Mapa -->
   <section id="mapa">

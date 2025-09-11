@@ -119,12 +119,30 @@ section.visible {
   padding-top: 6vh;            /* visual starting offset */
   box-sizing: border-box;
 }
-/* Poster sizing */
-.poster {
-  width: clamp(320px, 50vw, 720px);
-  max-width: 90%;
+/* Parallax poster */
+/* Poster frame keeps the poster in place */
+.poster-frame {
+  position: relative;
+  width: 600px;        /* same as old invite.png */
+  max-width: 90%;      /* responsive */
+  margin: 0 auto;      /* center horizontally */
   height: auto;
-  display: block;
+}
+
+.poster {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;          /* start hidden for GSAP */
+  pointer-events: none;
   will-change: transform, opacity;
 }
 /* place bride button relative to the poster-container */

@@ -1,245 +1,303 @@
-/* Global */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: "Playfair Display", serif;
-    color: #2c2c2c;
-    background: #fff;
-    scroll-behavior: smooth;
-    overflow-x: hidden;  /* extra safety */
+/* ===========================
+   Global Styles
+=========================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Sections */
+html, body {
+  font-family: "Playfair Display", serif;
+  color: #2c2c2c;
+  background: #fff;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 section {
-    min-height: 100vh;   /* ✅ simpler and stable than 100dvh */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    opacity: 0;
-    transition: opacity 1s ease, transform 1s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
 }
+
 section.visible {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Cover */
+/* ===========================
+   Cover Section
+=========================== */
 .cover {
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    min-height: 100vh;   /* ✅ consistent full height */
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #fff;
 }
+
 .cover::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-}
-.cover-content {
-    position: absolute;
-    z-index: 1;
-    text-align: center;
-    animation: fadeInUp 2s ease forwards;
-}
-.cover h1 {
-    font-size: clamp(2rem, 7vw, 3.5rem);  /* ✅ reduced for small screens */
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
-}
-.cover p {
-    font-size: clamp(1.2rem, 6vw, 2rem);  /* ✅ reduced for mobile */
-    margin-bottom: 10px;
-    text-shadow: 0 3px 8px rgba(0,0,0,0.5);
-}
-.cover button {
-    margin-top: 20px;
-    padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 28px);
-    border: none;
-    border-radius: 40px;
-    background: linear-gradient(135deg, #6a85b6, #bac8e0);
-    color: #fff;
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    cursor: pointer;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.cover button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
 }
 
-/* ✅ Cover image now fits without cropping */
 .cover img {
-    position: relative;         /* removed absolute */
-    width: 100%;
-    height: auto;               /* keep proportions */
-    display: block;     /* ✅ removes tiny inline spacing */
-    max-width: 100%;    /* ✅ prevents overflow */
-    object-fit: contain;        /* ✅ always fits */
-    z-index: 0;
-}
-
-/* Invite */
-.invite {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background: #ffffff;
-}
-.invite img {
-    width: 100%;
-    height: auto;               /* ✅ avoid stretching */
-    max-width: 100%;    /* ✅ prevents horizontal scroll */
-    display: block;     /* ✅ removes tiny inline spacing */
-    object-fit: contain;
-}
-
-/* Countdown */
-.countdown {
-    margin-top: 20px;
-    font-size: clamp(1.6rem, 8vw, 2.4rem); /* ✅ smaller on phones */
-    font-weight: bold;
-    color: #1b2a49;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    animation: pulse 2s infinite;
-}
-
-/* Navigation wrapper */
-.nav-wrapper {
-  position: absolute;
-  bottom: 20px;   /* keep wrapper anchored near bottom */
-  left: 0;
-  right: 0;
-  pointer-events: none; /* wrapper itself ignores clicks */
-}
-
-/* Shared styles */
-.nav-wrapper img {
-  position: absolute;
-  bottom: 20px;        /* ✅ raised above bottom */
-  pointer-events: auto;  
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: contain;
-  width: 80px;          /* fixed size */
+  z-index: 0;
+}
+
+.cover-content {
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  animation: fadeInUp 2s ease forwards;
+}
+
+.cover h1 {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.cover p {
+  font-size: clamp(1.2rem, 6vw, 2rem);
+  margin-bottom: 10px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.cover button {
+  margin-top: 20px;
+  padding: clamp(10px, 3vw, 14px) clamp(20px, 5vw, 28px);
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #6a85b6, #bac8e0);
+  color: #fff;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cover button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+
+/* ===========================
+   Poster / Invite Section
+=========================== */
+.poster-container {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 6vh;
+}
+
+.poster-frame {
+  position: relative;
+  width: 600px;
+  max-width: 90%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.poster {
+  position: relative;
+  width: 100%;
   height: auto;
 }
 
-/* Bride/Groom hover effect */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* keeps proportions */
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Poster Nav Buttons */
+.poster-nav {
+  position: absolute;
+  bottom: 10vh;
+  right: clamp(12px, 5vw, 24px);
+  z-index: 50;
+}
+
+.nav-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.nav-wrapper img {
+  position: absolute;
+  bottom: 20px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  object-fit: contain;
+  width: 80px;
+  height: auto;
+}
+
 .nav-wrapper img:hover {
   transform: scale(1.15) rotate(-2deg);
-  filter: drop-shadow(0 0 8px rgba(106,133,182,0.6));
+  filter: drop-shadow(0 0 8px rgba(106, 133, 182, 0.6));
 }
 
-/* Bride → bottom-right */
-.bride-btn {
-  right: 20px;
+.bride-btn { right: 20px; }
+.groom-btn { left: 20px; }
+
+/* ===========================
+   Countdown
+=========================== */
+.countdown {
+  margin-top: 20px;
+  font-size: clamp(1.6rem, 8vw, 2.4rem);
+  font-weight: bold;
+  color: #1b2a49;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
-/* Groom → bottom-left */
-.groom-btn {
-  left: 20px;
+.flip {
+  display: inline-block;
+  transition: transform 0.4s ease, color 0.4s ease;
 }
 
-.nav-wrapper img:hover {
-  transform: scale(1.1);
+.flip.animate {
+  transform: rotateX(360deg);
+  color: #e6ecf5;
 }
 
-/* RSVP */
+/* ===========================
+   RSVP Section
+=========================== */
 #rsvp {
-    background: linear-gradient(180deg, #f8f8f8, #e8eef6);
+  background: linear-gradient(180deg, #f8f8f8, #e8eef6);
 }
-iframe {
+
+#rsvp iframe {
   width: 90%;
   max-width: 600px;
-  height: 50vh; /* ✅ smaller height */
+  height: 50vh;
   border: none;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* Map */
+/* ===========================
+   Map Section
+=========================== */
 #mapa {
-    background: #fff;
+  background: #fff;
 }
+
 #mapa iframe {
-    width: 90%;                 /* ✅ same adjustment */
-    max-width: 700px;
-    height: 60vh;
-    border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 700px;
+  height: 60vh;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* Dresscode */
+/* ===========================
+   Dresscode Section
+=========================== */
 #dresscode {
-    background: linear-gradient(180deg, #e8eef6, #f8f8f8);
+  background: linear-gradient(180deg, #e8eef6, #f8f8f8);
 }
+
 .dresscode {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
+
 .dresscode img {
-    width: clamp(60px, 20vw, 100px);
-    border: 3px solid #6a85b6;
-    border-radius: 12px;
+  width: clamp(60px, 20vw, 100px);
+  border: 3px solid #6a85b6;
+  border-radius: 12px;
 }
+
 .dresscode p {
-    color: #2c2c2c;
-    font-weight: bold;
-    font-size: 1.2rem;
+  color: #2c2c2c;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-/* Music Toggle */
+/* ===========================
+   Music Toggle
+=========================== */
 #musicToggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 999;
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: none;
-    background: linear-gradient(135deg, #6a85b6, #bac8e0);
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #6a85b6, #bac8e0);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
 }
+
 #musicToggle:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-/* Animations */
+/* ===========================
+   Animations
+=========================== */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Countdown Flip Animation */
-.flip {
-  display: inline-block;
-  transition: transform 0.4s ease, color 0.4s ease;
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
-.flip.animate {
-  transform: rotateX(360deg);
-  color: #e6ecf5;
+
+/* ===========================
+   Responsive Tweaks
+=========================== */
+@media (max-width: 480px) {
+  .poster-frame { width: 90%; }
+  .cover h1 { font-size: 2.5rem; }
+  .cover p { font-size: 1.4rem; }
+  .nav-wrapper img { width: 60px; }
+  .dresscode img { width: clamp(50px, 25vw, 80px); }
+  #rsvp iframe, #mapa iframe { height: 45vh; }
 }

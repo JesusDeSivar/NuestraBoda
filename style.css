@@ -99,7 +99,7 @@ section.visible {
 }
 
 /* ===========================
-   Poster / Invite Section
+   Poster / Invite Section (Fixed)
 =========================== */
 .poster-container {
   position: relative;
@@ -107,32 +107,32 @@ section.visible {
   min-height: 80vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 6vh;
+  align-items: center;   /* ✅ centers vertically */
+  padding: 20px 0;
 }
 
 .poster-frame {
   position: relative;
-  width: 600px;
-  max-width: 90%;
-  height: auto;
+  width: 100%;
+  max-width: 450px;       /* ✅ good size for mobile */
+  aspect-ratio: 9 / 16;   /* ✅ keep proportions */
   margin: 0 auto;
 }
 
 .poster {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
+/* Each layer fits the poster frame exactly */
 .layer {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;               /* shorthand for top:0; right:0; bottom:0; left:0 */
   width: 100%;
-  height: auto;
-  object-fit: contain; /* keeps proportions */
-  opacity: 0;
+  height: 100%;
+  object-fit: contain;    /* ✅ no stretching */
+  opacity: 0;             /* animations control this */
   pointer-events: none;
   will-change: transform, opacity;
 }
@@ -140,7 +140,7 @@ section.visible {
 /* Poster Nav Buttons */
 .poster-nav {
   position: absolute;
-  bottom: 10vh;
+  bottom: 5vh;
   right: clamp(12px, 5vw, 24px);
   z-index: 50;
 }
@@ -171,6 +171,17 @@ section.visible {
 
 .bride-btn { right: 20px; }
 .groom-btn { left: 20px; }
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  .poster-frame {
+    max-width: 90%;       /* ✅ responsive scaling */
+  }
+  .nav-wrapper img {
+    width: 60px;
+  }
+}
+
 
 /* ===========================
    Countdown

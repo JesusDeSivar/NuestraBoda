@@ -171,6 +171,27 @@ section.visible {
 .bride-btn { right: 20px; }
 .groom-btn { left: 20px; }
 
+/* Bride emoji floating pulse */
+.nav-wrapper img.bride-btn {
+  animation: pulse 1.8s infinite ease-in-out;
+  transform-origin: center;
+}
+
+/* Optional: add a subtle glow while pulsing */
+.nav-wrapper img.bride-btn {
+  filter: drop-shadow(0 0 6px rgba(106, 133, 182, 0.5));
+}
+
+@keyframes floatPulse {
+  0%   { transform: scale(1) translateY(0); }
+  50%  { transform: scale(1.08) translateY(-6px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.nav-wrapper img.bride-btn {
+  animation: floatPulse 2s infinite ease-in-out;
+}
+
 /* Mobile tweaks */
 @media (max-width: 480px) {
   .poster-frame {

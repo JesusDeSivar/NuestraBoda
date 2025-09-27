@@ -112,11 +112,10 @@ section.visible {
 }
 
 .poster-frame {
-  position: relative;
-  width: 100%;
-  max-width: 450px;       /* ✅ good size for mobile */
-  aspect-ratio: 9 / 16;   /* ✅ keep proportions */
-  margin: 0 auto;
+  height: 90vh;       /* almost full screen height */
+  width: auto;
+  aspect-ratio: 9 / 16;
+  max-width: none;
 }
 
 .poster {

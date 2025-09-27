@@ -171,25 +171,24 @@ section.visible {
 .bride-btn { right: 20px; }
 .groom-btn { left: 20px; }
 
-/* Bride emoji floating pulse */
+/* Bride emoji floating pulse with subtle glow */
 .nav-wrapper img.bride-btn {
-  animation: pulse 1.8s infinite ease-in-out;
+  animation: floatPulse 2s infinite ease-in-out;
   transform-origin: center;
+  filter: drop-shadow(0 0 6px rgba(106, 133, 182, 0.5));
+  cursor: pointer;             /* cue it's clickable */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Optional: add a subtle glow while pulsing */
-.nav-wrapper img.bride-btn {
-  filter: drop-shadow(0 0 6px rgba(106, 133, 182, 0.5));
+.nav-wrapper img.bride-btn:hover {
+  transform: scale(1.15) translateY(-3px) rotate(-2deg);
+  filter: drop-shadow(0 0 10px rgba(106, 133, 182, 0.7));
 }
 
 @keyframes floatPulse {
   0%   { transform: scale(1) translateY(0); }
   50%  { transform: scale(1.08) translateY(-6px); }
   100% { transform: scale(1) translateY(0); }
-}
-
-.nav-wrapper img.bride-btn {
-  animation: floatPulse 2s infinite ease-in-out;
 }
 
 /* Mobile tweaks */

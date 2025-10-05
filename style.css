@@ -114,27 +114,36 @@ section.visible {
   background: #fff; /* optional */
 }
 
+/* Center the invite poster perfectly */
 .poster-container {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  height: 100vh; /* full screen height */
   display: flex;
   justify-content: center;
-  align-items: center;   /* ✅ centers vertically */
-  padding: 20px 0;
+  align-items: center;
+  overflow: hidden;
+  padding: 0; /* remove side padding */
 }
 
 .poster-frame {
-  height: 90vh;       /* almost full screen height */
-  width: auto;
+  position: relative;
+  height: 100%;
   aspect-ratio: 9 / 16;
-  max-width: none;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* centers horizontally */
 }
 
 .poster {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Each layer fits the poster frame exactly */

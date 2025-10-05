@@ -101,6 +101,19 @@ section.visible {
 /* ===========================
    Poster / Invite Section (Fixed)
 =========================== */
+
+#inviteSection {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full screen height */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: #fff; /* optional */
+}
+
 .poster-container {
   position: relative;
   width: 100%;

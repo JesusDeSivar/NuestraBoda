@@ -101,39 +101,61 @@ section.visible {
 /* ===========================
    Poster / Invite Section (Fixed)
 =========================== */
+
+#inviteSection {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full screen height */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: #fff; /* optional */
+}
+
+/* Center the invite poster perfectly */
 .poster-container {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  height: 100vh; /* full screen height */
   display: flex;
   justify-content: center;
-  align-items: center;   /* ✅ centers vertically */
-  padding: 20px 0;
+  align-items: center;
+  overflow: hidden;
+  padding: 0; /* remove side padding */
 }
 
 .poster-frame {
-  height: 90vh;       /* almost full screen height */
-  width: auto;
+  position: relative;
+  height: 100%;
   aspect-ratio: 9 / 16;
-  max-width: none;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* centers horizontally */
 }
 
 .poster {
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Each layer fits the poster frame exactly */
-.layer {
+/* Ensure each image layer is truly centered */
+.poster .layer {
   position: absolute;
-  inset: 0;               /* shorthand for top:0; right:0; bottom:0; left:0 */
+  inset: 0;
+  margin: auto;
+  object-fit: contain;
   width: 100%;
   height: 100%;
-  object-fit: contain;    /* ✅ no stretching */
-  opacity: 0;             /* animations control this */
-  pointer-events: none;
-  will-change: transform, opacity;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Poster Nav Buttons */
@@ -256,24 +278,45 @@ section.visible {
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* ===========================
-   Dresscode Section
-=========================== */
+/* ---------- Dresscode: mostrar imagen completa sin recortarla ---------- */
 #dresscode {
-  background: linear-gradient(180deg, #e8eef6, #f8f8f8);
-}
-
-.dresscode {
+  position: relative;
+  width: 100%;
+  height: 100vh;       /* pantalla completa */
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
+  padding: 0;          /* evita gaps por el padding global de section */
+  background-color: #fff; /* color para las bandas cuando la imagen no llena la proporción */
 }
 
-.dresscode img {
-  width: clamp(60px, 20vw, 100px);
-  border: 3px solid #6a85b6;
-  border-radius: 12px;
+#dresscode .dresscode {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mostrar la imagen COMPLETA (sin recortarla). 
+   Mantiene la proporción y ocupa la mayor dimensión posible */
+#dresscode .dresscode img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* muestra toda la imagen sin recortar */
+  object-position: center;
+  display: block;
+}
+
+/* Asegurar que en móviles no exista la regla previa que la encoje */
+@media (max-width: 480px) {
+  /* Si existe la regla .dresscode img { width: clamp(...); } elimínala.
+     Si no puedes eliminarla (por orden de CSS), sobreescríbela así: */
+  .dresscode img { width: auto !important; height: auto !important; }
+  #dresscode .dresscode img { max-height: 100vh; }
 }
 
 .dresscode p {

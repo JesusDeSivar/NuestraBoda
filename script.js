@@ -87,23 +87,21 @@ function enableAutoplay() {
 window.addEventListener("click", enableAutoplay, { once: true });
 window.addEventListener("keydown", enableAutoplay, { once: true });
 
-// ---------- First Scroll Transition ----------
-const coverPhoto = document.getElementById("coverSection");
-const nextSection = document.getElementById("inviteSection");
-coverPhoto.addEventListener("click", () => {
-  nextSection.scrollIntoView({ behavior: "smooth" });
-});
-window.addEventListener("keydown", () => {
-  nextSection.scrollIntoView({ behavior: "smooth" });
-});
+// -----------------------------
+// NOTE: I REMOVED the cover click/key listeners that forced a scroll.
+// If you still want the "click cover to jump to invite" behavior,
+// it's safer to keep that behaviour on the specific button only:
+// <button onclick="document.getElementById('inviteSection').scrollIntoView({behavior:'smooth'})">...</button>
+// -----------------------------
 
 // ---------- Parallax (GSAP + Mouse + Scroll) ----------
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 
   const layers = document.querySelectorAll(".layer");
+  const posterContainer = document.querySelector(".poster-container");
 
-  // Intro animation timeline
+  // Intro animation timeline (runs when poster is scrolled into view)
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".poster-container",
@@ -122,24 +120,28 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     );
   });
 
-  // Mouse parallax
-  const posterContainer = document.querySelector(".poster-container");
-  posterContainer.addEventListener("mousemove", e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+  // Mouse parallax handler (uses container-relative coords)
+  function onParallax(e) {
+    if (!posterContainer) return;
+    const rect = posterContainer.getBoundingClientRect();
+    // ignore if mouse is outside container (safety)
+    if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) return;
 
-    layers.forEach((layer, i) => {
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+    layers.forEach(layer => {
       const depth = parseFloat(layer.dataset.depth) || 0;
       gsap.to(layer, {
-        x: x * depth * 50,
-        y: y * depth * 50,
-        duration: 0.5,
+        x: x * depth * 40, // reduced multiplier for less aggressive movement
+        y: y * depth * 40,
+        duration: 0.4,
         overwrite: "auto"
       });
     });
-  });
+  }
 
-  // Scroll parallax
+  // Scroll parallax (keeps this as-is)
   layers.forEach((layer, i) => {
     const depth = parseFloat(layer.dataset.depth) || 0;
     gsap.to(layer, {

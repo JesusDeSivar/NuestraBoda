@@ -383,5 +383,5 @@ section.visible {
   .cover p { font-size: 1.4rem; }
   .nav-wrapper img { width: 60px; }
   .dresscode img { width: clamp(50px, 25vw, 80px); }
-  #rsvp iframe, #mapa iframe { height: 45vh; }
+  #mapa iframe { height: 45vh; }
 }

@@ -250,17 +250,26 @@ section.visible {
 /* ===========================
    RSVP Section
 =========================== */
+/* RSVP: formulario ocupa toda la pantalla */
 #rsvp {
-  background: linear-gradient(180deg, #f8f8f8, #e8eef6);
+  width: 100%;
+  height: 100vh;          /* ocupa la pantalla completa */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;       /* fondo limpio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 #rsvp iframe {
-  width: 90%;
-  max-width: 600px;
-  height: 50vh;
+  width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 /* ===========================

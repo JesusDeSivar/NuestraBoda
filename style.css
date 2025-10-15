@@ -172,13 +172,14 @@ section.visible {
   bottom: 20px;
   left: 0;
   right: 0;
-  pointer-events: none;
+  pointer-events: none /* para que no bloquee clics */
 }
 
 .nav-wrapper img {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
-  pointer-events: auto;
+  pointer-events: auto; /* solo la imagen es clickeable */
+  z-index: 999;
   cursor: pointer;
   transition: transform 0.3s ease;
   object-fit: contain;
@@ -260,7 +261,7 @@ section.visible {
   overflow: hidden;
   background: #fff;       /* fondo limpio */
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
 }
@@ -269,7 +270,8 @@ section.visible {
     /* Define a fixed height for the container */
     height: 90%; /* Adjust this value until the full form is visible */
     width: 100%;
-    margin: 0 auto 0 auto; /* Center the div, and add 20px margin at the bottom */
+    margin: 0 auto 0 auto; /* Center the div */
+    position: relative;
 }
 
 #rsvp iframe {
@@ -278,7 +280,8 @@ section.visible {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  z-index: -1; /* Behind floating buttons */
+  z-index: 1; /* Changed from -1 to 1 */
+  position: relative;
 }
 
 /* ===========================

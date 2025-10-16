@@ -168,16 +168,18 @@ section.visible {
 
 .nav-wrapper {
   position: absolute;
+  z-index: 999; /* Use a high number to ensure it's above most other elements */
   bottom: 20px;
   left: 0;
   right: 0;
-  pointer-events: none;
+  pointer-events: none /* para que no bloquee clics */
 }
 
 .nav-wrapper img {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
-  pointer-events: auto;
+  pointer-events: auto; /* solo la imagen es clickeable */
+  z-index: 999;
   cursor: pointer;
   transition: transform 0.3s ease;
   object-fit: contain;
@@ -191,7 +193,7 @@ section.visible {
 }
 
 .bride-btn { right: 20px; }
-.groom-btn { left: 20px; }
+.groom-btn { right: 20px; }
 
 /* Bride emoji floating pulse with subtle glow */
 .nav-wrapper img.bride-btn,
@@ -250,17 +252,36 @@ section.visible {
 /* ===========================
    RSVP Section
 =========================== */
+/* RSVP: formulario ocupa toda la pantalla */
 #rsvp {
-  background: linear-gradient(180deg, #f8f8f8, #e8eef6);
+  width: 100%;
+  height: 100vh;          /* ocupa la pantalla completa */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;       /* fondo limpio */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+#rsvp .form-container {
+    /* Define a fixed height for the container */
+    height: 90%; /* Adjust this value until the full form is visible */
+    width: 100%;
+    margin: 0 auto 0 auto; /* Center the div */
+    position: relative;
 }
 
 #rsvp iframe {
-  width: 90%;
-  max-width: 600px;
-  height: 50vh;
+  width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 1; /* Changed from -1 to 1 */
+  position: relative;
 }
 
 /* ===========================
@@ -325,6 +346,47 @@ section.visible {
   font-size: 1.2rem;
 }
 
+/* ---------- Copiar para id gift ---------- */
+#gift {
+  position: relative;
+  width: 100%;
+  height: 100vh;       /* pantalla completa */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;          /* evita gaps por el padding global de section */
+  background-color: #fff; /* color para las bandas cuando la imagen no llena la proporción */
+}
+
+#gift .dresscode {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mostrar la imagen COMPLETA (sin recortarla). 
+   Mantiene la proporción y ocupa la mayor dimensión posible */
+#gift .dresscode img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* muestra toda la imagen sin recortar */
+  object-position: center;
+  display: block;
+}
+
+/* Asegurar que en móviles no exista la regla previa que la encoje */
+@media (max-width: 480px) {
+  /* Si existe la regla .dresscode img { width: clamp(...); } elimínala.
+     Si no puedes eliminarla (por orden de CSS), sobreescríbela así: */
+  .dresscode img { width: auto !important; height: auto !important; }
+  #gift .dresscode img { max-height: 100vh; }
+}
+
 /* ===========================
    Music Toggle
 =========================== */
@@ -374,5 +436,5 @@ section.visible {
   .cover p { font-size: 1.4rem; }
   .nav-wrapper img { width: 60px; }
   .dresscode img { width: clamp(50px, 25vw, 80px); }
-  #rsvp iframe, #mapa iframe { height: 45vh; }
+  #mapa iframe { height: 45vh; }
 }

@@ -21,7 +21,7 @@ sections.forEach(section => observer.observe(section));
 
 // ---------- Countdown ----------
 const countdownEl = document.getElementById("countdown");
-const weddingDate = new Date("2025-11-16T15:00:00").getTime();
+const weddingDate = new Date("2025-11-16T15:30:00").getTime();
 
 function formatTime(num) {
   return num.toString().padStart(2, "0");
